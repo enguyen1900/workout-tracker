@@ -20,4 +20,17 @@ public class WorkoutLog {
 
         return volume;
     }
+
+    public ArrayList<Workout> getWorkoutsByExercise(String exercise) {
+        ArrayList<Workout> workoutsWithExercise = new ArrayList<>();
+
+        for (Workout w : workouts) {
+            if (w.getExercise().equals(exercise)) {
+                workoutsWithExercise.add(w);
+            }
+        }
+
+        return workoutsWithExercise;
+    }
+
 }
