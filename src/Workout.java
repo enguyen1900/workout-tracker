@@ -36,4 +36,9 @@ public class Workout {
     public LocalDate getDate() {
         return date;
     }
+
+    @Override
+    public String toString() {
+        return date + " " + exercise + " " + sets + "x" + reps + " @ " + weight + " lb";
+    }
 }

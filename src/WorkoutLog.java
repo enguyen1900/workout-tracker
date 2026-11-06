@@ -4,7 +4,7 @@ public class WorkoutLog {
     private ArrayList<Workout> workouts;
 
     public WorkoutLog() {
-        workouts = new ArrayList<Workout>();
+        workouts = new ArrayList<>();
     }
 
     public void addWorkout(Workout w) {
@@ -14,23 +14,35 @@ public class WorkoutLog {
     public double getTotalVolume() {
         double volume = 0;
 
-        for (Workout w: workouts) {
-            volume += w.getReps() * w.getWeight() * w.getSets();
+        for (Workout w : workouts) {
+            volume += w.getSets() * w.getReps() * w.getWeight();
         }
 
         return volume;
     }
 
     public ArrayList<Workout> getWorkoutsByExercise(String exercise) {
-        ArrayList<Workout> workoutsWithExercise = new ArrayList<>();
+        ArrayList<Workout> matches = new ArrayList<>();
 
         for (Workout w : workouts) {
-            if (w.getExercise().equals(exercise)) {
-                workoutsWithExercise.add(w);
+            if (w.getExercise().equalsIgnoreCase(exercise)) {
+                matches.add(w);
             }
         }
 
-        return workoutsWithExercise;
+        return matches;
     }
 
+    @Override
+    public String toString() {
+        if (workouts.isEmpty()) {
+            return "No workouts logged";
+        }
+
+        String message = "";
+        for (Workout w : workouts) {
+            message += w + "\n";
+        }
+        return message;
+    }
 }
